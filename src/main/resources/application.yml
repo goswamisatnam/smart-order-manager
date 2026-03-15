@@ -1,0 +1,51 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: smart-order-manager
+  webflux:
+    base-path: /
+  jackson:
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: non_null
+
+# Apache Camel Configuration
+camel:
+  springboot:
+    name: order-orchestrator-camel
+    main-run-controller: true
+  component:
+    direct:
+      timeout: 30000
+    saga:
+      enabled: true
+
+# Actuator
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,camelroutes
+  endpoint:
+    health:
+      show-details: always
+
+# SpringDoc OpenAPI
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+
+# Logging
+logging:
+  level:
+    root: INFO
+    com.hospitality.order: DEBUG
+    org.apache.camel: INFO
+    org.apache.camel.saga: DEBUG
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
