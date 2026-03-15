@@ -1,0 +1,16 @@
+server:
+  port: 0
+
+spring:
+  application:
+    name: smart-order-manager-test
+
+camel:
+  springboot:
+    name: order-orchestrator-camel-test
+    main-run-controller: false
+
+logging:
+  level:
+    root: WARN
+    com.hospitality.order: DEBUG
